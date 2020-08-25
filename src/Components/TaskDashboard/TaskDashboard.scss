@@ -1,5 +1,49 @@
+nav {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+nav div {
+    height: 40px;
+    width: 50%;
+    box-sizing: border-box;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+input {
+    height: 30px;
+    width: 75%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid black;
+    font-size: 16px;
+    outline: none;
+}
+
+button {
+    height: 30px;
+    width: 15%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: none;
+    background: #5FAD56;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
 .task-dashboard {
     min-height: 100vh;
     box-sizing: border-box;
     padding-top: 65px;
+}
+
+.active-page {
+    border-bottom: 2px solid #3A86FF;
+    box-shadow: 0 1px 2px gray;
+}
+
+.inactive-page {
+    border-bottom: 2px solid #EEEEEE;
 }

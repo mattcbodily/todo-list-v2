@@ -41,8 +41,8 @@ export default props => {
     return (
         <section className='task-dashboard'>
             <nav>
-                <div onClick={toggleTaskView}>Current</div>
-                <div onClick={toggleTaskView}>Complete</div>
+                <div onClick={toggleTaskView} className={taskView === 'current' ? 'active-page' : 'inactive-page'}>Current</div>
+                <div onClick={toggleTaskView} className={taskView === 'complete' ? 'active-page' : 'inactive-page'}>Complete</div>
             </nav>
             {taskView === 'current'
             ? (

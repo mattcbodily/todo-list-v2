@@ -14,7 +14,7 @@
 .task-progress {
     width: 90%;
     box-sizing: border-box;
-    border: 1px solid black;
+    border: 1px solid gray;
     border-radius: 5px;
     display: flex;
     justify-content: space-evenly;
@@ -26,14 +26,25 @@
     width: 100%;
     box-sizing: border-box;
     line-height: 30px;
+    font-weight: 500;
 }
 
 #in-progress {
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
 }
 
-.active {
-    background: blue;
+.active-not-started {
+    background: #3A86FF;
+    color: white;
+}
+
+.active-in-progress {
+    background: #F9A03F;
+    color: white;
+}
+
+.active-complete {
+    background: #5FAD56;
     color: white;
 }
