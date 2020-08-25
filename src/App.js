@@ -12,15 +12,13 @@ function App() {
     if(!storedUser){
       setUser({
         username: '',
-        currentTasks: [],
-        completedTasks: [],
+        tasks: [],
         theme: ''
-      });
+    });
 
       localStorage.setItem('userObj', JSON.stringify({
         username: '',
-        currentTasks: [],
-        completedTasks: [],
+        tasks: [],
         theme: ''
       }));
     } else {
@@ -28,10 +26,11 @@ function App() {
     }
   }, [])
 
+  console.log(user)
   return (
     <div className="App">
       <Header user={user} userSetFn={setUser}/>
-      <TaskDashboard />
+      <TaskDashboard user={user} userSetFn={setUser}/>
     </div>
   );
 }

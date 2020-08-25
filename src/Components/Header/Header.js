@@ -5,8 +5,6 @@ export default props => {
     let [username, setUsername] = useState(props.user.username),
         [edit, setEdit] = useState(false);
 
-    console.log(props.user)
-
     const addUsername = () => {
         let userCopy = {...props.user, username};
 
@@ -27,7 +25,7 @@ export default props => {
             )
             : (
                 <section>
-                    <p>Welcome Back, {props.user.username}</p>
+                    <p>Welcome, {props.user.username}</p>
                     <button onClick={() => setEdit(true)}>Change Username</button>
                 </section>
             )}
