@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import TaskDisplay from '../TaskDisplay/TaskDisplay';
 import './TaskDashboard.css';
 
 export default props => {
@@ -21,18 +22,16 @@ export default props => {
         setTaskInput('');
     }
 
-    console.log(props.user)
-
     return (
         <section className='task-dashboard'>
             <input value={taskInput} placeholder='Enter Task' onChange={e => setTaskInput(e.target.value)}/>
             <button onClick={addTask}>Add</button>
             {props.user.tasks && taskView === 'current'
             ? props.user.tasks?.filter(task => task.progress === 'Not Started' || task.progress === 'In Progress').map((task, i) => (
-                <p key={i}>{task.task}</p>
+                <TaskDisplay key={i} task={task}/>
             ))
-            : props.user.tasks?.filter(task => task.progress === 'Done').map((task, i) => (
-                <p key={i}>{task.task}</p>
+            : props.user.tasks?.filter(task => task.progress === 'Complete').map((task, i) => (
+                <TaskDisplay key={i} task={task}/>
             ))}
 
         </section>
