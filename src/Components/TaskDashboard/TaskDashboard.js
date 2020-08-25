@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import TaskDisplay from '../TaskDisplay/TaskDisplay';
-import './TaskDashboard.css';
+import './TaskDashboard.scss';
 
 export default props => {
     let [taskInput, setTaskInput] = useState(''),

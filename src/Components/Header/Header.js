@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './Header.css';
+import './Header.scss';
 
 export default props => {
     let [username, setUsername] = useState(props.user.username),

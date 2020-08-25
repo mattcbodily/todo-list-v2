@@ -1,5 +1,5 @@
 import React from 'react';
-import './TaskDisplay.css';
+import './TaskDisplay.scss';
 
 export default props => {
     return (

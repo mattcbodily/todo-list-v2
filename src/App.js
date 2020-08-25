@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Header from './Components/Header/Header';
 import TaskDashboard from './Components/TaskDashboard/TaskDashboard';
-import './App.css';
+import './App.scss';
 
 function App() {
   let [user, setUser] = useState({});
