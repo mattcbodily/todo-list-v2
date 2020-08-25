@@ -28,17 +28,9 @@
     line-height: 30px;
 }
 
-#not-started {
-
-}
-
 #in-progress {
     border-left: 1px solid black;
     border-right: 1px solid black;
-}
-
-#complete {
-
 }
 
 .active {
