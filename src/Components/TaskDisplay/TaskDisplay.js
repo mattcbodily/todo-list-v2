@@ -2,7 +2,6 @@ import React from 'react';
 import './TaskDisplay.css';
 
 export default props => {
-    console.log(props.task)
     return (
         <div className='task-display'>
             <p>{props.task.task}</p>

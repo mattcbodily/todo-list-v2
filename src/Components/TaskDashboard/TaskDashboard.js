@@ -6,6 +6,10 @@ export default props => {
     let [taskInput, setTaskInput] = useState(''),
         [taskView, setTaskView] = useState('current');
 
+    const toggleTaskView = () => {
+        taskView === 'current' ? setTaskView('complete') : setTaskView('current');
+    }
+
     const addTask = () => {
         const {user, userSetFn} = props;
 
@@ -36,8 +40,18 @@ export default props => {
 
     return (
         <section className='task-dashboard'>
-            <input value={taskInput} placeholder='Enter Task' onChange={e => setTaskInput(e.target.value)}/>
-            <button onClick={addTask}>Add</button>
+            <nav>
+                <div onClick={toggleTaskView}>Current</div>
+                <div onClick={toggleTaskView}>Complete</div>
+            </nav>
+            {taskView === 'current'
+            ? (
+                <section>
+                    <input value={taskInput} placeholder='Enter Task' onChange={e => setTaskInput(e.target.value)}/>
+                    <button onClick={addTask}>Add</button>
+                </section>
+            )
+            : null}
             {props.user.tasks && taskView === 'current'
             ? props.user.tasks?.filter(task => task.progress === 'Not Started' || task.progress === 'In Progress').map((task, i) => (
                 <TaskDisplay key={i} task={task} user={props.user} progressFn={updateProgress}/>
