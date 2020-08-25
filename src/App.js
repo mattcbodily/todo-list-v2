@@ -13,13 +13,15 @@ function App() {
       setUser({
         username: '',
         currentTasks: [],
-        completedTasks: []
+        completedTasks: [],
+        theme: ''
       });
 
       localStorage.setItem('userObj', JSON.stringify({
         username: '',
         currentTasks: [],
-        completedTasks: []
+        completedTasks: [],
+        theme: ''
       }));
     } else {
       setUser(JSON.parse(storedUser))
