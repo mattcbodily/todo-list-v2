@@ -9,10 +9,21 @@ header {
     justify-content: space-between;
     align-items: center;
     background: blue;
+    color: white;
 }
 
 .app-icon {
     height: 50px;
     width: 50px;
     border-radius: 50%;
+}
+
+.username-flex {
+    display: flex;
+    align-items: center;
+}
+
+.username-flex p {
+    font-size: 18px;
+    margin-right: 05px;
 }
