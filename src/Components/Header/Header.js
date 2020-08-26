@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import mainIcon from '../../assets/todo-list-v2.svg';
 import './Header.scss';
 
 export default props => {
@@ -15,7 +16,10 @@ export default props => {
 
     return (
         <header>
-            <img src='https://i.kym-cdn.com/photos/images/original/001/516/899/f31.jpg' alt='To Do List' className='app-icon'/>
+            <section className='icon-flex'>
+                <img src={mainIcon} alt='To Do List' className='app-icon'/>
+                <p>Doist</p>
+            </section>
             {!props.user.username || edit
             ? (
                 <section>
