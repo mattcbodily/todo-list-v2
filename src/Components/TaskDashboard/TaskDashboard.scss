@@ -34,7 +34,7 @@ button {
 }
 
 .task-dashboard {
-    min-height: 100vh;
+    max-height: 100vh;
     box-sizing: border-box;
     padding-top: 65px;
 }
@@ -46,4 +46,9 @@ button {
 
 .inactive-page {
     border-bottom: 2px solid #EEEEEE;
+}
+
+.todo-container {
+    max-height: calc(100vh - 145px);
+    overflow-y: scroll;
 }

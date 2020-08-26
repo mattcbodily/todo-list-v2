@@ -52,14 +52,15 @@ export default props => {
                 </section>
             )
             : null}
-            {props.user.tasks && taskView === 'current'
-            ? props.user.tasks?.filter(task => task.progress === 'Not Started' || task.progress === 'In Progress').map((task, i) => (
-                <TaskDisplay key={i} task={task} user={props.user} progressFn={updateProgress}/>
-            ))
-            : props.user.tasks?.filter(task => task.progress === 'Complete').map((task, i) => (
-                <TaskDisplay key={i} task={task} user={props.user} progressFn={updateProgress}/>
-            ))}
-
+            <section className='todo-container'>
+                {props.user.tasks && taskView === 'current'
+                ? props.user.tasks?.filter(task => task.progress === 'Not Started' || task.progress === 'In Progress').map((task, i) => (
+                    <TaskDisplay key={i} task={task} user={props.user} progressFn={updateProgress}/>
+                ))
+                : props.user.tasks?.filter(task => task.progress === 'Complete').map((task, i) => (
+                    <TaskDisplay key={i} task={task} user={props.user} progressFn={updateProgress}/>
+                ))}
+            </section>
         </section>
     )
 }
