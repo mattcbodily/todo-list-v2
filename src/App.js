@@ -1,35 +1,35 @@
 import React, {useState, useEffect} from 'react';
 import Header from './Components/Header/Header';
-import TaskDashboard from './Components/TaskDashboard/TaskDashboard';
+import routes from './routes';
 import './App.scss';
 
 function App() {
-  let [user, setUser] = useState({});
+  // let [user, setUser] = useState({});
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('userObj');
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem('userObj');
 
-    if(!storedUser){
-      setUser({
-        username: '',
-        tasks: [],
-        theme: ''
-    });
+  //   if(!storedUser){
+  //     setUser({
+  //       username: '',
+  //       tasks: [],
+  //       theme: ''
+  //   });
 
-      localStorage.setItem('userObj', JSON.stringify({
-        username: '',
-        tasks: [],
-        theme: ''
-      }));
-    } else {
-      setUser(JSON.parse(storedUser))
-    }
-  }, [])
+  //     localStorage.setItem('userObj', JSON.stringify({
+  //       username: '',
+  //       tasks: [],
+  //       theme: ''
+  //     }));
+  //   } else {
+  //     setUser(JSON.parse(storedUser))
+  //   }
+  // }, [])
 
   return (
     <div className="App">
-      <Header user={user} userSetFn={setUser}/>
-      <TaskDashboard user={user} userSetFn={setUser}/>
+      <Header />
+      {/* {routes} */}
     </div>
   );
 }
