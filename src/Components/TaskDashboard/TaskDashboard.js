@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import {ThemeContext} from '../../App';
 import TaskDisplay from '../TaskDisplay/TaskDisplay';
 import './TaskDashboard.scss';
 
@@ -6,6 +7,8 @@ export default props => {
     let [tasks, setTasks] = useState([]),
         [taskInput, setTaskInput] = useState(''),
         [taskView, setTaskView] = useState('current');
+
+    let {theme} = useContext(ThemeContext);
 
     useEffect(() => {
         let taskArr = localStorage.getItem('tasks');
@@ -40,7 +43,7 @@ export default props => {
     }
 
     return (
-        <section className='task-dashboard'>
+        <section className={`task-dashboard ${theme ? theme : null}`}>
             <nav>
                 <div onClick={toggleTaskView} className={taskView === 'current' ? 'active-page' : 'inactive-page'}>Current</div>
                 <div onClick={toggleTaskView} className={taskView === 'complete' ? 'active-page' : 'inactive-page'}>Complete</div>

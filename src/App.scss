@@ -1,3 +1,18 @@
 .App {
   text-align: center;
 }
+
+.light {
+  background: white;
+}
+
+.dark {
+  background: #1A1A1A;
+  color: white;
+}
+
+.dark input {
+  background-color: #1A1A1A;
+  border-color: white;
+  color: white;
+}

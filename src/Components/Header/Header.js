@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import {ThemeContext} from '../../App';
 import {Link} from 'react-router-dom';
 import mainIcon from '../../assets/todo-list-v2.svg';
 import './Header.scss';
@@ -6,6 +7,8 @@ import './Header.scss';
 export default props => {
     let [username, setUsername] = useState(''),
         [edit, setEdit] = useState(false);
+
+    const {theme} = useContext(ThemeContext);
 
     useEffect(() => {
         let storedName = localStorage.getItem('username');
