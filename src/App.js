@@ -1,36 +1,46 @@
 import React, {useState, useEffect} from 'react';
 import Header from './Components/Header/Header';
-import TaskDashboard from './Components/TaskDashboard/TaskDashboard';
+import routes from './routes';
 import './App.scss';
 
+export const ThemeContext = React.createContext(null);
+
 function App() {
-  let [user, setUser] = useState({});
+  let [theme, setTheme] = useState('');
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('userObj');
-
-    if(!storedUser){
-      setUser({
-        username: '',
-        tasks: [],
-        theme: ''
-    });
-
-      localStorage.setItem('userObj', JSON.stringify({
-        username: '',
-        tasks: [],
-        theme: ''
-      }));
-    } else {
-      setUser(JSON.parse(storedUser))
-    }
+    getStoredTheme();
   }, [])
 
+  const getStoredTheme = () => {
+    let userTheme = localStorage.getItem('theme');
+
+    if(!userTheme){
+      setTheme('light');
+      localStorage.setItem('theme', 'light');
+    } else {
+      setTheme(userTheme);
+    }
+  }
+
+  const toggleTheme = () => {
+    console.log('hit')
+    if(theme === 'light'){
+      setTheme('dark');
+      localStorage.setItem('theme', 'dark');
+    } else if(theme === 'dark') {
+      setTheme('light');
+      localStorage.setItem('theme', 'light');
+    }
+  }
+
   return (
-    <div className="App">
-      <Header user={user} userSetFn={setUser}/>
-      <TaskDashboard user={user} userSetFn={setUser}/>
-    </div>
+    <ThemeContext.Provider value={{theme, toggleTheme}}>
+      <div className={`App ${theme ? theme : null}`}>
+        <Header />
+        {routes}
+      </div>
+    </ThemeContext.Provider>
   );
 }
 

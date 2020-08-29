@@ -1,45 +1,49 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import {ThemeContext} from '../../App';
 import TaskDisplay from '../TaskDisplay/TaskDisplay';
 import './TaskDashboard.scss';
 
 export default props => {
-    let [taskInput, setTaskInput] = useState(''),
+    let [tasks, setTasks] = useState([]),
+        [taskInput, setTaskInput] = useState(''),
         [taskView, setTaskView] = useState('current');
+
+    let {theme} = useContext(ThemeContext);
+
+    useEffect(() => {
+        let taskArr = localStorage.getItem('tasks');
+        if(taskArr){
+            setTasks(JSON.parse(taskArr))
+        }
+    }, [])
 
     const toggleTaskView = () => {
         taskView === 'current' ? setTaskView('complete') : setTaskView('current');
     }
 
     const addTask = () => {
-        const {user, userSetFn} = props;
-
-        let task = {
-            id: user.tasks.length ? user.tasks[user.tasks.length - 1].id + 1 : 1,
+        let newTask = {
+            id: tasks.length ? tasks[tasks.length - 1].id + 1 : 1,
             task: taskInput,
             progress: 'Not Started'
         }
 
-        let userCopy = {...user};
-        userCopy.tasks.push(task);
-
-        localStorage.setItem('userObj', JSON.stringify(userCopy));
-        userSetFn(userCopy);
+        setTasks([...tasks, newTask]);
+        localStorage.setItem('tasks', JSON.stringify([...tasks, newTask]));
         setTaskInput('');
     }
 
     const updateProgress = (progress, id) => {
-        const {user, userSetFn} = props;
-
-        let userCopy = {...user},
-            task = userCopy.tasks.find(e => e.id === id);
-
+        let tasksCopy = [...tasks];
+        let task = tasksCopy.find(e => e.id === id);
         task.progress = progress;
-        localStorage.setItem('userObj', JSON.stringify(userCopy));
-        userSetFn(userCopy);
+
+        setTasks(tasksCopy);
+        localStorage.setItem('tasks', JSON.stringify(tasksCopy));
     }
 
     return (
-        <section className='task-dashboard'>
+        <section className={`task-dashboard ${theme ? theme : null}`}>
             <nav>
                 <div onClick={toggleTaskView} className={taskView === 'current' ? 'active-page' : 'inactive-page'}>Current</div>
                 <div onClick={toggleTaskView} className={taskView === 'complete' ? 'active-page' : 'inactive-page'}>Complete</div>
@@ -53,12 +57,12 @@ export default props => {
             )
             : null}
             <section className='todo-container'>
-                {props.user.tasks && taskView === 'current'
-                ? props.user.tasks?.filter(task => task.progress === 'Not Started' || task.progress === 'In Progress').map((task, i) => (
-                    <TaskDisplay key={i} task={task} user={props.user} progressFn={updateProgress}/>
+                {tasks.length && taskView === 'current'
+                ? tasks?.filter(task => task.progress === 'Not Started' || task.progress === 'In Progress').map((task, i) => (
+                    <TaskDisplay key={i} task={task} progressFn={updateProgress}/>
                 ))
-                : props.user.tasks?.filter(task => task.progress === 'Complete').map((task, i) => (
-                    <TaskDisplay key={i} task={task} user={props.user} progressFn={updateProgress}/>
+                : tasks?.filter(task => task.progress === 'Complete').map((task, i) => (
+                    <TaskDisplay key={i} task={task} progressFn={updateProgress}/>
                 ))}
             </section>
         </section>
