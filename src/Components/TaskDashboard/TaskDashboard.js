@@ -29,7 +29,7 @@ export default props => {
         }
 
         setTasks([...tasks, newTask]);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem('tasks', JSON.stringify([...tasks, newTask]));
         setTaskInput('');
     }
 

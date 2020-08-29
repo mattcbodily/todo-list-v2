@@ -4,6 +4,17 @@
     padding-top: 65px;
 }
 
+.settings p {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.dark-mode-flex {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .switch {
     position: relative;
     display: inline-block;
