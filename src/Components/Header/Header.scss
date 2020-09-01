@@ -15,6 +15,7 @@ header {
 .icon-flex {
     display: flex;
     align-items: center;
+    margin-right: 10px;
 }
 
 .icon-flex p {
@@ -26,6 +27,16 @@ header {
     width: 35px;
     border-radius: 50%;
     margin-right: 5px;
+}
+
+.username-input {
+    background: transparent;
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+.username-btn {
+    width: 50px;
 }
 
 .username-flex {
@@ -41,4 +52,28 @@ header {
 .nav-links {
     text-decoration: none;
     color: white;
+}
+
+@media(min-width: 550px){
+    header {
+        height: 75px;
+        padding: 0 50px;
+    }
+
+    .icon-flex p {
+        font-size: 24px;
+    }
+
+    .app-icon {
+        height: 40px;
+        width: 40px;
+    }
+
+    .username-flex p {
+        font-size: 22px;
+    }
+
+    .username-btn, .username-input {
+        height: 30px;
+    }
 }

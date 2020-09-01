@@ -22,15 +22,17 @@ export default props => {
     }
 
     const addTask = () => {
-        let newTask = {
-            id: tasks.length ? tasks[tasks.length - 1].id + 1 : 1,
-            task: taskInput,
-            progress: 'Not Started'
+        if(taskInput){
+            let newTask = {
+                id: tasks.length ? tasks[tasks.length - 1].id + 1 : 1,
+                task: taskInput,
+                progress: 'Not Started'
+            }
+    
+            setTasks([...tasks, newTask]);
+            localStorage.setItem('tasks', JSON.stringify([...tasks, newTask]));
+            setTaskInput('');
         }
-
-        setTasks([...tasks, newTask]);
-        localStorage.setItem('tasks', JSON.stringify([...tasks, newTask]));
-        setTaskInput('');
     }
 
     const updateProgress = (progress, id) => {

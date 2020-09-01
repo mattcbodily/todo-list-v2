@@ -34,6 +34,14 @@ button {
     font-weight: 500;
 }
 
+button:hover {
+    background: #54974C;
+}
+
+button:active {
+    background: #5FAD56;
+}
+
 .task-dashboard {
     min-height: 100vh;
     max-height: 100vh;
@@ -43,7 +51,7 @@ button {
 
 .active-page {
     border-bottom: 2px solid #3A86FF;
-    box-shadow: 0 1px 2px gray;
+    box-shadow: 0 2px 2px -1px gray;
 }
 
 .inactive-page {
@@ -53,4 +61,32 @@ button {
 .todo-container {
     max-height: calc(100vh - 145px);
     overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.todo-container::-webkit-scrollbar {
+    display: none;
+}
+
+@media(min-width: 550px){
+    nav {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    nav div {
+        font-size: 20px;
+    }
+
+    button, input {
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .task-dashboard {
+        max-width: 1200px;
+        overflow: hidden;
+        margin: 0 auto;
+    }
 }

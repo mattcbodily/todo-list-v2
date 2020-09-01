@@ -29,9 +29,9 @@ export default props => {
             </section>
             {edit
             ? (
-                <section>
-                    <input value={username} placeholder='Add Username' onChange={e => setUsername(e.target.value)}/>
-                    <button onClick={addUsername}>Submit</button>
+                <section className='username-flex'>
+                    <input className='username-input' value={username} placeholder='Add Username' onChange={e => setUsername(e.target.value)}/>
+                    <button className='username-btn' onClick={addUsername}>Add</button>
                 </section>
             )
             : (

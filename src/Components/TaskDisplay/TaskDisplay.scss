@@ -27,6 +27,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    overflow: hidden;
 }
 
 .progress-option {
@@ -35,6 +36,7 @@
     box-sizing: border-box;
     line-height: 30px;
     font-weight: 500;
+    cursor: pointer;
 }
 
 #in-progress {
@@ -55,4 +57,36 @@
 .active-complete {
     background: #5FAD56;
     color: white;
+}
+
+@media(min-width: 550px){
+    .task-display {
+        height: 75px;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .task-display p {
+        width: 25%;
+        font-size: 20px;
+        text-align: left;
+    }
+
+    .task-progress {
+        height: 40px;
+        width: 55%;
+    }
+
+    .progress-option {
+        height: 40px;
+        line-height: 40px;
+    }
+
+    .progress-option.not-active:hover {
+        background: #ECECEC;
+    }
+
+    .task-display.task-display.light::after, .task-display.dark::after {
+        display: none;
+    }
 }
