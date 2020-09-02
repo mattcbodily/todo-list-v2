@@ -21,7 +21,9 @@ export default props => {
         taskView === 'current' ? setTaskView('complete') : setTaskView('current');
     }
 
-    const addTask = () => {
+    const addTask = (e) => {
+        e.preventDefault();
+
         if(taskInput){
             let newTask = {
                 id: tasks.length ? tasks[tasks.length - 1].id + 1 : 1,
@@ -44,6 +46,13 @@ export default props => {
         localStorage.setItem('tasks', JSON.stringify(tasksCopy));
     }
 
+    const clearTasks = () => {
+        let filteredTasks = tasks.filter(task => task.progress !== 'Complete');
+
+        setTasks(filteredTasks);
+        localStorage.setItem('tasks', JSON.stringify(filteredTasks));
+    }
+
     return (
         <section className={`task-dashboard ${theme ? theme : null}`}>
             <nav>
@@ -52,20 +61,25 @@ export default props => {
             </nav>
             {taskView === 'current'
             ? (
-                <section>
-                    <input value={taskInput} placeholder='Enter Task' onChange={e => setTaskInput(e.target.value)}/>
-                    <button onClick={addTask}>Add</button>
-                </section>
+                <form>
+                    <input value={taskInput} placeholder='Enter Task' onChange={e => setTaskInput(e.target.value)} />
+                    <button onClick={e => addTask(e)}>Add</button>
+                </form>
             )
             : null}
             <section className='todo-container'>
-                {tasks.length && taskView === 'current'
+                {taskView === 'current'
                 ? tasks?.filter(task => task.progress === 'Not Started' || task.progress === 'In Progress').map((task, i) => (
                     <TaskDisplay key={i} task={task} progressFn={updateProgress}/>
                 ))
-                : tasks?.filter(task => task.progress === 'Complete').map((task, i) => (
-                    <TaskDisplay key={i} task={task} progressFn={updateProgress}/>
-                ))}
+                : (
+                   <div>
+                        {tasks?.filter(task => task.progress === 'Complete').map((task, i) => (
+                            <TaskDisplay key={i} task={task} progressFn={updateProgress}/>
+                        ))}
+                        <span onClick={clearTasks}>Clear All</span>
+                   </div> 
+                )}
             </section>
         </section>
     )
