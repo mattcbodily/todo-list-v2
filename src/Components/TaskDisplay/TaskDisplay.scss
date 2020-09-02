@@ -19,6 +19,11 @@
     border: 1px solid #525252;
 }
 
+.delete-icon {
+    display: none;
+    cursor: pointer;
+}
+
 .task-progress {
     width: 90%;
     box-sizing: border-box;
@@ -66,10 +71,21 @@
         justify-content: space-around;
     }
 
-    .task-display p {
+    .task {
         width: 25%;
         font-size: 20px;
         text-align: left;
+        display: flex;
+        align-items: center;
+    }
+
+    .task p {
+        margin-right: 10px;
+        max-width: 90%;
+    }
+
+    .task:hover .delete-icon {
+        display: initial;
     }
 
     .task-progress {

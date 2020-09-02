@@ -46,6 +46,13 @@ export default props => {
         localStorage.setItem('tasks', JSON.stringify(tasksCopy));
     }
 
+    const deleteTask = (id) => {
+        let filteredTasks = tasks.filter(task => task.id !== id);
+
+        setTasks(filteredTasks);
+        localStorage.setItem('tasks', JSON.stringify(filteredTasks));
+    }
+
     const clearTasks = () => {
         let filteredTasks = tasks.filter(task => task.progress !== 'Complete');
 
@@ -70,12 +77,12 @@ export default props => {
             <section className='todo-container'>
                 {taskView === 'current'
                 ? tasks?.filter(task => task.progress === 'Not Started' || task.progress === 'In Progress').map((task, i) => (
-                    <TaskDisplay key={i} task={task} progressFn={updateProgress}/>
+                    <TaskDisplay key={i} task={task} progressFn={updateProgress} deleteFn={deleteTask}/>
                 ))
                 : (
                    <div>
                         {tasks?.filter(task => task.progress === 'Complete').map((task, i) => (
-                            <TaskDisplay key={i} task={task} progressFn={updateProgress}/>
+                            <TaskDisplay key={i} task={task} progressFn={updateProgress} deleteFn={deleteTask}/>
                         ))}
                         <span onClick={clearTasks}>Clear All</span>
                    </div> 
