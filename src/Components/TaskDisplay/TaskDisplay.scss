@@ -81,7 +81,6 @@
 
     .task p {
         margin-right: 10px;
-        max-width: 90%;
     }
 
     .task:hover .delete-icon {
@@ -100,6 +99,7 @@
 
     .progress-option.not-active:hover {
         background: #ECECEC;
+        color: black;
     }
 
     .task-display.task-display.light::after, .task-display.dark::after {
