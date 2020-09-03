@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Header from './Components/Header/Header';
+import Tutorial from './Components/Tutorial/Tutorial';
 import routes from './routes';
 import './App.scss';
 
@@ -8,12 +9,21 @@ export const UserContext = React.createContext(null);
 
 function App() {
   let [theme, setTheme] = useState(''),
-      [username, setUsername] = useState('');
+      [username, setUsername] = useState(''),
+      [tutorialView, setTutorialView] = useState(false);
 
   useEffect(() => {
     getStoredTheme();
     getStoredUsername();
   }, [])
+
+  const firstVisit = () => {
+    let newUser = localStorage.getItem('newUser');
+
+    if(!newUser){
+      setTutorialView(true);
+    }
+  }
 
   const getStoredTheme = () => {
     let userTheme = localStorage.getItem('theme');
@@ -58,6 +68,9 @@ function App() {
       <div className={`App ${theme ? theme : null}`}>
         <Header />
         {routes}
+        {tutorialView
+          ? <Tutorial />
+          : null}
       </div>
       </UserContext.Provider>
     </ThemeContext.Provider>
