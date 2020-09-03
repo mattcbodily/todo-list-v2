@@ -1,23 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {Link} from 'react-router-dom';
+import {UserContext} from '../../App';
 import mainIcon from '../../assets/todo-list-v2.svg';
 import './Header.scss';
 
 export default props => {
-    let [username, setUsername] = useState(''),
+    let [nameInput, setNameInput] = useState(''),
         [edit, setEdit] = useState(false);
 
+    let {username, changeUsername} = useContext(UserContext);
+
     useEffect(() => {
-        let storedName = localStorage.getItem('username');
-        if(storedName){
-            setUsername(storedName);
-        } else {
+        if(!username){
             setEdit(true);
+        } else {
+            setEdit(false);
         }
-    }, [])
+    }, [username])
 
     const addUsername = () => {
-        localStorage.setItem('username', username);
+        changeUsername(nameInput)
         setEdit(false);
     }
 
@@ -30,7 +32,7 @@ export default props => {
             {edit
             ? (
                 <section className='username-flex'>
-                    <input className='username-input' value={username} placeholder='Add Username' onChange={e => setUsername(e.target.value)}/>
+                    <input className='username-input' value={nameInput} placeholder='Add Username' onChange={e => setNameInput(e.target.value)}/>
                     <button className='username-btn' onClick={addUsername}>Add</button>
                 </section>
             )

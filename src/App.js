@@ -4,12 +4,15 @@ import routes from './routes';
 import './App.scss';
 
 export const ThemeContext = React.createContext(null);
+export const UserContext = React.createContext(null);
 
 function App() {
-  let [theme, setTheme] = useState('');
+  let [theme, setTheme] = useState(''),
+      [username, setUsername] = useState('');
 
   useEffect(() => {
     getStoredTheme();
+    getStoredUsername();
   }, [])
 
   const getStoredTheme = () => {
@@ -23,8 +26,18 @@ function App() {
     }
   }
 
+  const getStoredUsername = () => {
+    let storedUsername = localStorage.getItem('username');
+
+    if(!storedUsername){
+      setUsername('')
+      localStorage.setItem('username', '');
+    } else {
+      setUsername(storedUsername)
+    }
+  }
+
   const toggleTheme = () => {
-    console.log('hit')
     if(theme === 'light'){
       setTheme('dark');
       localStorage.setItem('theme', 'dark');
@@ -34,12 +47,19 @@ function App() {
     }
   }
 
+  const changeUsername = (val) => {
+    setUsername(val);
+    localStorage.setItem('username', val);
+  }
+
   return (
     <ThemeContext.Provider value={{theme, toggleTheme}}>
+      <UserContext.Provider value={{username, changeUsername}}>
       <div className={`App ${theme ? theme : null}`}>
         <Header />
         {routes}
       </div>
+      </UserContext.Provider>
     </ThemeContext.Provider>
   );
 }
