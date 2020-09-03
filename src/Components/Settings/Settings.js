@@ -34,10 +34,10 @@ export default props => {
                 <p>Edit Username</p>
                 {editView
                 ? (
-                    <>
+                    <div>
                         <input className='edit-username-input' value={nameInput} onChange={e => setNameInput(e.target.value)}/>
                         <button className='edit-username-btn' onClick={editUsername}>Edit</button>
-                    </>
+                    </div>
                 )
                 : <span onClick={() => setEditView(true)}>{username}</span>}
             </section>

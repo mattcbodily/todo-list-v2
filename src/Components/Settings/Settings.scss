@@ -93,3 +93,9 @@ input:checked + .slider:before {
 .home-link.dark {
     color: white;
 }
+
+@media(min-width: 550px){
+    .edit-username-btn {
+        width: 50px;
+    }
+}
