@@ -84,7 +84,7 @@ export default props => {
                         {tasks?.filter(task => task.progress === 'Complete').map((task, i) => (
                             <TaskDisplay key={i} task={task} progressFn={updateProgress} deleteFn={deleteTask}/>
                         ))}
-                        <span onClick={clearTasks}>Clear All</span>
+                        <span className='clear-tasks' onClick={clearTasks}>Clear All</span>
                    </div> 
                 )}
             </section>

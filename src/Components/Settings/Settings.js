@@ -16,7 +16,7 @@ export default props => {
                     <span className="slider round"></span>
                 </label>
             </section>
-            <Link to='/'>Go Back Home</Link>
+            <Link className={`home-link ${theme}`} to='/'>Go Back Home</Link>
         </div>
     )
 }

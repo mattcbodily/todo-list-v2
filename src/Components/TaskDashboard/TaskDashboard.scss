@@ -69,6 +69,12 @@ button:active {
     display: none;
 }
 
+.clear-tasks {
+    height: 50px;
+    line-height: 50px;
+    display: block;
+}
+
 @media(min-width: 550px){
     nav {
         width: 90%;
